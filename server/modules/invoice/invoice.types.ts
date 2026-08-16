@@ -13,7 +13,7 @@ export interface IClientDetails{
     name:String,
     email?:String,
     phone?:String,
-    addres?:IAddress,
+    address?:IAddress,
     gstNumber?: String,
     billingAddress?:IAddress
 }
