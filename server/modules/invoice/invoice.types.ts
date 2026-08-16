@@ -1,98 +1,94 @@
-export interface IAddress {
-    address1: String,
+export interface IAddress{
+    address1:String,
     address2: String,
-    city: string,
-    state: string,
-    pincode: string,
-    country: string,
-};
-
-export interface IBusiness {
-    name: String,
-    logo?: String,
-    email?: String,
-    phone?: String,
-    gstin: String,  
-    address?: IAddress
-}
-
-export interface ICustomer {
-    name: String,
-    email?: String,
-    phone?: String,
-    billingAddress?: IAddress,
-    shippingAddress?: IAddress,
-    gstin?: String
+    city:String,
+    district:String,
+    state:String,
+    pincode:String,
+    country:String,
 }
 
 
-export interface IItem {
-    name?: String,
-    description?: String,
-    hsnSac?: string;
-    quantity: number;
-    unit?: string;
-    price: number;
-    discount?: number;
-    gstRate?: number;
-    total: number;
+export interface IClientDetails{
+    name:String,
+    email?:String,
+    phone?:String,
+    addres?:IAddress,
+    gstNumber?: String,
+    billingAddress?:IAddress
 }
+
+
+export interface IBusinessDetails{
+    name?:String,
+    email?:String,
+    phone?:String,
+    logo?:String,
+    address?:IAddress,
+    gstNumber?:string
+}
+
+export interface IInvoiceItems{
+    name:String,
+    description?:String,
+    quantity:number,
+    unitPrice:number,
+    discount?:number,
+    taxRate:number,
+    total:number
+}
+
+export interface ITaxDetails{
+    taxRate:number,
+    taxAmount:number
+}
+
 
 export interface IPaymentDetails {
-    bankName?: string;
-    accountName?: string;
-    accountNumber?: string;
-    ifscCode?: string;
-    upiId?: string;
+  bankName?: string;
+  accountName?: string;
+  accountNumber?: string;
+  ifscCode?: string;
+  upiId?: string;
 }
 
-
-
 export interface IInvoice {
-    invoiceNumber: string;
+  invoiceNumber: string;
 
-    invoiceDate: Date;
+  invoiceDate: Date;
+  dueDate?: Date;
 
-    dueDate?: Date;
+  currency: string;
 
-    currency: string;
+  business: IBusinessDetails;
+  customer: IClientDetails;
 
-    status:
+  items: IInvoiceItems[];
+
+  subtotal: number;
+  discount: number;
+
+  cgst: number;
+  sgst: number;
+  igst: number;
+
+  shipping: number;
+  otherCharges: number;
+
+  grandTotal: number;
+
+  notes?: string;
+  terms?: string;
+
+  paymentDetails?: IPaymentDetails;
+
+  status:
     | "draft"
     | "sent"
     | "paid"
     | "overdue"
     | "cancelled";
 
-    business: IBusiness;
-
-    customer: ICustomer;
-
-    items: IItem[];
-
-    subtotal: number;
-
-    discount: number;
-
-    cgst: number;
-
-    sgst: number;
-
-    igst: number;
-
-    shipping: number;
-
-    otherCharges: number;
-
-    grandTotal: number;
-
-    notes?: string;
-
-    terms?: string;
-
-    paymentDetails?: IPaymentDetails;
-
-    createdAt?: Date;
-
-    updatedAt?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
